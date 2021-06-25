@@ -1,1 +1,95 @@
+##################################################################################################
+Python
+Question 1: Simple Functional Phonebook
+##################################################################################################
+Solution 1:
+from tkinter import *
 
+
+box = Tk()
+
+
+box.geometry('400x500')
+
+
+datas = []
+
+
+def add():
+	global datas
+	datas.append([Name.get(),Number.get(),address.get(1.0, "end-1c")])
+	update_book()
+
+
+def view():
+	Name.set(datas[int(select.curselection()[0])][0])
+	Number.set(datas[int(select.curselection()[0])][1])
+	address.delete(1.0,"end")
+	address.insert(1.0, datas[int(select.curselection()[0])][2])
+
+
+def delete():
+	del datas[int(select.curselection()[0])]
+	update_book()
+
+def reset():
+	Name.set('')
+	Number.set('')
+	address.delete(1.0,"end")
+
+
+def update_book():
+	select.delete(0,END)
+	for n,p,a in datas:
+		select.insert(END, n)
+
+
+Name = StringVar()
+Number = StringVar()
+
+frame = Frame()
+frame.pack(pady=10)
+
+frame1 = Frame()
+frame1.pack()
+
+frame2 = Frame()
+frame2.pack(pady=10)
+
+Label(frame, text = 'Name', font='arial 12 bold').pack(side=LEFT)
+Entry(frame, textvariable = Name,width=50).pack()
+
+Label(frame1, text = 'Phone\n No.', font='arial 12 bold').pack(side=LEFT)
+Entry(frame1, textvariable = Number,width=50).pack()
+
+Label(frame2, text = 'Address', font='arial 12 bold').pack(side=LEFT)
+address = Text(frame2,width=37,height=8)
+address.pack()
+
+Button(box,text="Add",font="arial 12 bold",command=add).place(x= 100, y=270)
+Button(box,text="View",font="arial 12 bold",command=view).place(x= 100, y=310)
+Button(box,text="Delete",font="arial 12 bold",command=delete).place(x= 100, y=350)
+Button(box,text="Reset",font="arial 12 bold",command=reset).place(x= 100, y=390)
+
+scroll_bar = Scrollbar(box, orient=VERTICAL)
+select = Listbox(box, yscrollcommand=scroll_bar.set, height=10)
+scroll_bar.config (command=select.yview)
+scroll_bar.pack(side=LEFT, fill=Y)
+select.place(x=200,y=260)
+
+box.mainloop()
+
+#############################################################################################
+Linux
+
+Question 1:Use any Linux distro for a span of 1 week and Select your OS preference(s), which must include pros and
+cons based on your personal experience. 
+#############################################################################################
+
+Solution 1: I am using Ubuntu from last 6 months and CentOs from last 1 month, So I would try to differentiate between these two distributions of Linux. 
+Ubuntu is more user friendly and easy to learn for beginners, who switched from widows recently.
+CentOs is more stable compared to Ubuntu, as CentOs go with less updation, It may be its drawback as well.
+In Ubuntu, Debian package can be downloaded by apt-get install command, but in CentOs we need to run yum command and install RPM packages.
+CentOs is very less prone to cyber threats and have good security feature.
+
+#############################################################################################
